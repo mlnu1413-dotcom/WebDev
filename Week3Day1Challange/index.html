@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Time</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background-color: lightgray;
+        }
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+        h2 {
+            color: green;
+        }
+        .recipe {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="recipe-container">
+        <h1 id="mainHeading"></h1>
+        <div id="recipeDisplay"></div>
+    </div>
+
+    <script>
+        var recipes = [
+            {
+                name: "Breakfast Recipe: Fluffy Pancakes",
+                steps: [
+                    "In a large bowl, mix together flour, sugar, baking powder, and salt.",
+                    "In another bowl, whisk together milk, egg, and melted butter.",
+                    "Pour wet ingredients into dry ingredients and stir until just combined.",
+                    "Heat a griddle over medium heat and pour 1/4 cup batter for each pancake.",
+                    "Cook until bubbles form on surface, flip, and cook until golden brown, then serve with syrup."
+                ]
+            },
+            {
+                name: "Lunch Recipe: Grilled Chicken Caesar Salad",
+                steps: [
+                    "Season chicken breast with salt, pepper, and olive oil, then grill for 6-7 minutes per side until fully cooked.",
+                    "Chop romaine lettuce into bite-sized pieces and place in a large bowl.",
+                    "Prepare Caesar dressing by mixing mayonnaise, lemon juice, garlic, anchovy paste, and parmesan cheese.",
+                    "Slice the grilled chicken into strips and add to the lettuce.",
+                    "Toss everything with the Caesar dressing, top with croutons and extra parmesan, then serve immediately."
+                ]
+            },
+            {
+                name: "Dinner Recipe: Spaghetti Carbonara",
+                steps: [
+                    "Bring a large pot of salted water to boil and cook spaghetti according to package directions.",
+                    "While pasta cooks, dice pancetta or bacon and fry in a large pan until crispy.",
+                    "In a bowl, whisk together eggs, grated parmesan cheese, and black pepper.",
+                    "Drain pasta, reserving 1 cup of pasta water, then add pasta to the pan with pancetta.",
+                    "Remove pan from heat, add egg mixture and toss quickly, adding pasta water as needed to create a creamy sauce, then serve hot."
+                ]
+            }
+        ];
+        
+        var hour = new Date().getHours();
+        var mealType = "";
+        var timeDisplay = "";
+        var displayHour = hour;
+        
+        if (hour < 12) {
+            mealType = "Breakfast";
+            displayHour = hour == 0 ? 12 : hour;
+            timeDisplay = displayHour + " AM";
+        } else if (hour < 18) {
+            mealType = "Lunch";
+            displayHour = hour - 12;
+            timeDisplay = displayHour + " PM";
+        } else {
+            mealType = "Dinner";
+            displayHour = hour - 12;
+            timeDisplay = displayHour + " PM";
+        }
+        
+        var mainHeading = document.getElementById('mainHeading');
+        mainHeading.innerHTML = 'You should cook <span style="color: orange;">' + mealType + '</span>. It\'s <span style="color: red;">' + timeDisplay + '</span>';
+        
+        var recipeDisplay = document.getElementById('recipeDisplay');
+        var htmlContent = "";
+        
+        for (var i = 0; i < recipes.length; i++) {
+            htmlContent += '<div class="recipe">';
+            htmlContent += '<h2>' + recipes[i].name + '</h2>';
+            htmlContent += '<ol>';
+            
+            for (var j = 0; j < recipes[i].steps.length; j++) {
+                htmlContent += '<li>' + recipes[i].steps[j] + '</li>';
+            }
+            
+            htmlContent += '</ol>';
+            htmlContent += '</div>';
+        }
+        
+        recipeDisplay.innerHTML = htmlContent;
+    </script>
+</body>
+</html>
