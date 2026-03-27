@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>Week 3 Day 2</title>
+       <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="container">
+            <header style="font-size: 60px; color: #fff;">
+                <h1>My First Web Page</h1>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="page2.html">About</a></li>
+                    <li><a href="page4.html">Gallary</a></li>
+                    <li><a href="page3.html">Contact</a></li>
+                </ul>
+            </nav>
+            <main>
+                <h1>My Fourth Heading</h1>
+                <p>My Fourth paragraph.</p>
+                <ul id="album">
+                    <!-- <li id="photo"><img src="../images/images/winterland1.jpg"></li>
+                    <li id="photo"><img src="../images/images/winterland2.jpg"></li>
+                    <li id="photo"><img src="../images/images/winterland3.jpg"></li>
+                    <li id="photo"><img src="../images/images/winterland4.jpg"></li>
+                    <li id="photo"><img src="../images/images/winterland5.jpg"></li>
+                    <li id="photo"><img src="../images/images/winterland6.jpg"></li> -->
+                </ul>
+                
+                <!-- Popup Overlay -->
+                <div id="popupOverlay">
+                    <div id="popupBox">
+                        <h2 id="popupHeading">Info Box</h2>
+                        <p id="popupText">Click on any image to see more information here.</p>
+                        <a href="#" id="closePopup">Close Info Box</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+    <footer style="position: fixed; bottom: 0; width: 100%;">
+        <p>Copyright &copy; 2025 My Website</p>
+    </footer>
+    <script>
+        var liOpen = '<li id="photo">';
+        var liClose = '</li>';
+        var imgOpen = '<img src="';
+        var imgClose = '">';
+
+        var closeText = "Close Info Box";
+
+        var imageInfo = [
+            "Beautiful winter",
+            "show land", 
+            "wintery road",
+            "winter in the country",
+            "Snowy mountain peaks",
+            "Frozen forest wonderland"
+        ];
+
+        var imageDetails = [
+            "Winter Landscape 1: A beautiful snowy mountain scene",
+            "Winter Landscape 2: Frozen lake with pine trees",
+            "Winter Landscape 3: Snow-covered forest path",
+            "Winter Landscape 4: Winter sunset over mountains",
+            "Winter Landscape 5: Ice formations on rocks",
+            "Winter Landscape 6: Snowy valley with wildlife"
+        ];
+
+        var album = document.getElementById("album");
+        var popupOverlay = document.getElementById("popupOverlay");
+        var popupBox = document.getElementById("popupBox");
+        var popupHeading = document.getElementById("popupHeading");
+        var popupText = document.getElementById("popupText");
+        var closePopup = document.getElementById("closePopup");
+        closePopup.innerHTML = closeText;
+
+        var imagePath = "../images/images/winterland";
+
+        for (var i = 1; i <= 6; i++) {
+            var fullImagePath = imagePath + i + ".jpg";
+            var imageElement = liOpen + imgOpen + fullImagePath + imgClose + '<h3>' + imageInfo[i-1] + '</h3>' + liClose;
+            album.innerHTML += imageElement;
+        }
+
+        var images = album.getElementsByTagName("img");
+
+        for (var i = 0; i < images.length; i++) {
+            images[i].addEventListener("click", function(index) {
+                return function() {
+                    showPopup(index);
+                };
+            }(i));
+        }
+        
+        closePopup.addEventListener("click", function(event) {
+            event.preventDefault();
+            hidePopup();
+        });
+
+        popupOverlay.addEventListener("click", function(event) {
+            if (event.target === popupOverlay) {
+                hidePopup();
+            }
+        });
+
+        function showPopup(index) {
+            popupHeading.innerHTML = imageInfo[index];
+            popupText.innerHTML = imageDetails[index];
+            popupOverlay.style.display = "block";
+        }
+
+        function hidePopup() {
+            popupOverlay.style.display = "none";
+            popupHeading.innerHTML = "Info Box";
+            popupText.innerHTML = "Click on any image to see more information here.";
+        }
+    </script>
+</html>
