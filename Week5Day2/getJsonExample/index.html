@@ -1,0 +1,31 @@
+<html>
+   <head>
+      <title>Westcliff Fullstack Bootcamp jQuery Ajax Example</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+         $(document).ready(function() {
+            $("#btn").click(function(event){
+
+               // //Add a div element within the body
+               // $('body').append('<div id="showinfo"></div>')
+            
+               //Load text from text file
+               $('#showinfo').load('text.txt');
+					
+            });
+         });
+      </script>
+      <style>
+         #showinfo {
+            background-color:#eee;
+         }
+      </style>
+   </head>
+	
+   <body>
+      <div id="showinfo"> Show Data</div>
+		<p>Click button to load text file</p>
+      <input type="button" id="btn" value="Load Data" />
+   </body>
+</html>
+
