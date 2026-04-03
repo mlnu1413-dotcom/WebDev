@@ -1,7 +1,8 @@
 <html>
     <head>
         <title>Week 3 Day 2</title>
-       <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <div id="container">
@@ -34,6 +35,15 @@
                         <h2 id="popupHeading">Info Box</h2>
                         <p id="popupText">Click on any image to see more information here.</p>
                         <a href="#" id="closePopup">Close Info Box</a>
+                    </div>
+                </div>
+                
+                <!-- Lightbox Overlay -->
+                <div id="lightboxOverlay">
+                    <div id="lightboxContainer">
+                        <img id="lightboxImage" src="" alt="">
+                        <div id="lightboxCaption"></div>
+                        <a href="#" id="closeLightbox">&times;</a>
                     </div>
                 </div>
             </main>
@@ -84,12 +94,41 @@
             album.innerHTML += imageElement;
         }
 
-        var images = album.getElementsByTagName("img");
+        // jQuery Lightbox functionality
+        $(document).ready(function() {
+            // Add click event to images for lightbox
+            $('#album img').on('click', function(e) {
+                e.stopPropagation(); // Prevent triggering other click events
+                var imgSrc = $(this).attr('src');
+                var imgIndex = $('#album img').index($(this));
+                
+                $('#lightboxImage').attr('src', imgSrc);
+                $('#lightboxCaption').text(imageInfo[imgIndex]);
+                $('#lightboxOverlay').fadeIn(300);
+            });
+            
+            // Close lightbox on X click
+            $('#closeLightbox').on('click', function(e) {
+                e.preventDefault();
+                $('#lightboxOverlay').fadeOut(300);
+            });
+            
+            // Close lightbox on overlay click
+            $('#lightboxOverlay').on('click', function(e) {
+                if (e.target === this) {
+                    $(this).fadeOut(300);
+                }
+            });
+        });
 
-        for (var i = 0; i < images.length; i++) {
-            images[i].addEventListener("click", function(index) {
-                return function() {
-                    showPopup(index);
+        var photoContainers = document.querySelectorAll("#photo");
+        for (var i = 0; i < photoContainers.length; i++) {
+            photoContainers[i].addEventListener("click", function(index) {
+                return function(event) {
+                    // Only trigger if click is not on the image itself
+                    if (event.target.tagName !== 'IMG') {
+                        showPopup(index);
+                    }
                 };
             }(i));
         }
