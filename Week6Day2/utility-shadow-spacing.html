@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow and Spacing Utility Demo</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .demo-box {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .shadow-demo {
+            background-color: #f8f9fa;
+            padding: 30px;
+            margin: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Bootstrap Shadow and Spacing Utility Classes</h1>
+        <p>Exploring shadow-* classes and spacing utilities (m-* for margin, p-* for padding)</p>
+        
+        <!-- Shadow Examples -->
+        <div class="demo-box">
+            <h2>Shadow Utility Classes</h2>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="shadow-demo shadow-none">
+                        shadow-none
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="shadow-demo shadow-sm">
+                        shadow-sm
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="shadow-demo shadow">
+                        shadow
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="shadow-demo shadow-lg">
+                        shadow-lg
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Spacing Examples -->
+        <div class="demo-box">
+            <h2>Spacing Utility Classes</h2>
+            
+            <h3>Margin Examples (m-*)</h3>
+            <div class="bg-light p-3 mb-3">
+                <div class="bg-primary text-white p-2 m-1">m-1 (small margin)</div>
+                <div class="bg-success text-white p-2 m-3">m-3 (medium margin)</div>
+                <div class="bg-danger text-white p-2 m-5">m-5 (large margin)</div>
+            </div>
+            
+            <h3>Padding Examples (p-*)</h3>
+            <div class="bg-light mb-3">
+                <div class="bg-info text-white p-1">p-1 (small padding)</div>
+                <div class="bg-warning text-dark p-3">p-3 (medium padding)</div>
+                <div class="bg-secondary text-white p-5">p-5 (large padding)</div>
+            </div>
+            
+            <h3>Directional Spacing</h3>
+            <div class="bg-light p-3">
+                <div class="bg-dark text-white mt-2 mb-2">mt-2 mb-2 (top/bottom margin)</div>
+                <div class="bg-primary text-white ms-3 me-3">ms-3 me-3 (start/end margin)</div>
+                <div class="bg-success text-white pt-3 pb-3">pt-3 pb-3 (top/bottom padding)</div>
+                <div class="bg-info text-white ps-4 pe-4">ps-4 pe-4 (start/end padding)</div>
+            </div>
+        </div>
+        
+        <!-- Combined Examples -->
+        <div class="demo-box">
+            <h2>Combined Shadow and Spacing</h2>
+            <div class="shadow shadow-lg p-4 m-3 bg-white rounded">
+                <h4>Card with shadow-lg, p-4, m-3</h4>
+                <p>This box combines shadow, padding, and margin utilities for a complete styled component.</p>
+            </div>
+            
+            <div class="shadow-sm p-3 m-2 bg-light border">
+                <h4>Light shadow with p-3, m-2</h4>
+                <p>Subtle shadow effect with moderate spacing.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
